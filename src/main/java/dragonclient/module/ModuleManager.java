@@ -1,0 +1,126 @@
+package dragonclient.module;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
+import dragonclient.Dragon;
+import dragonclient.module.impl.combat.AntiFireball;
+import dragonclient.module.impl.combat.Autoclicker;
+import dragonclient.module.impl.combat.Criticals;
+import dragonclient.module.impl.combat.NoClickDelay;
+import dragonclient.module.impl.misc.ClientSpoofer;
+import dragonclient.module.impl.misc.KillMessage;
+import dragonclient.module.impl.misc.XCarry;
+import dragonclient.module.impl.movement.InvMove;
+import dragonclient.module.impl.movement.No003;
+import dragonclient.module.impl.player.Blink;
+import dragonclient.module.impl.render.ESP;
+import dragonclient.module.impl.render.Fullbright;
+import dragonclient.module.impl.render.HUD;
+import dragonclient.module.impl.render.Tracers;
+import dragonclient.module.impl.render.Trails;
+import dragonclient.module.impl.render.XRay;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.TextComponentString;
+
+
+public class ModuleManager {
+
+    private final TreeSet<Module> modules = new TreeSet<>(
+            (module1, module2) -> module1.getName().compareTo(module2.getName()));
+    private final HashMap<Class<?>, Module> moduleClassMap = new HashMap<>();
+
+    public boolean shouldNotify = false;
+    public int toggleSoundMode = 0;
+    public float toggleVolume = 0F;
+    public float popSoundPower = 90F;
+    public float swingSoundPower = 75F;
+
+    public ModuleManager() {
+
+    }
+
+    /**
+     * Register all modules
+     */
+    public void registerModules() {
+        registerModule(new ClientSpoofer());
+        registerModule(new HUD());
+        registerModule(new Fullbright());
+        registerModule(new Criticals());
+        registerModule(new Autoclicker());
+        registerModule(new ESP());
+        registerModule(new XCarry());
+        registerModule(new Tracers());
+        registerModule(new KillMessage());
+        registerModule(new AntiFireball());
+        registerModule(new InvMove());
+        registerModule(new NoClickDelay());
+        registerModule(new Trails());
+        registerModule(new No003());
+        registerModule(new XRay());
+        registerModule(new Blink());
+
+    }
+
+    /**
+     * Register a module
+     */
+    public void registerModule(Module module) {
+        modules.add(module);
+        moduleClassMap.put(module.getClass(), module);
+
+        module.onInitialize();
+    }
+
+    public Module getModuleByName(String name) {
+        return modules.stream()
+                .filter(module -> module.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
+     * Unregister a module
+     */
+    public void unregisterModule(Module module) {
+        modules.remove(module);
+        moduleClassMap.remove(module.getClass());
+    }
+
+    public <T extends Module> T getModule(Class<T> moduleClass) {
+        return moduleClass.cast(moduleClassMap.get(moduleClass));
+    }
+
+    public <T extends Module> T get(Class<T> clazz) {
+        return getModule(clazz);
+    }
+
+    /**
+     * Get module by name
+     */
+    public Module getModule(String moduleName) {
+        return modules.stream()
+                .filter(module -> module.getName().equalsIgnoreCase(moduleName))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public TreeSet<Module> getModules() {
+        return modules;
+    }
+
+    public List<Module> getEnabledModules() {
+        return modules.stream()
+                .filter(Module::isEnabled)
+                .collect(Collectors.toList());
+    }
+
+        public void addChatMessage(String message) {
+		message = Dragon.CLIENT_NAME_CHAT + message;
+		
+		Minecraft.getMinecraft().player.addChatMessage(new TextComponentString(message));
+	}
+}
