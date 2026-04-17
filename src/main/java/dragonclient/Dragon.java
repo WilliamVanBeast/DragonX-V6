@@ -4,6 +4,7 @@ import dragonclient.ui.newclickgui.*;
 import dragonclient.util.notifications.NotificationManager;
 import dragonclient.module.ModuleManager;
 import dragonclient.module.SettingsSave;
+import dragonclient.anticheat.check.CheckStorage;
 import dragonclient.command.CommandManager;
 import dragonclient.event.EventManager;
 
@@ -28,7 +29,9 @@ public class Dragon {
         clickGui = new ClickGui();
         notificationManager = new NotificationManager();
         commandManager = new CommandManager();
+        CheckStorage.setInstance(new CheckStorage());
 
+        CheckStorage.getInstance().init();
 
         SettingsSave.read();
         Display.setTitle(name + " " + version + "by " + creator);

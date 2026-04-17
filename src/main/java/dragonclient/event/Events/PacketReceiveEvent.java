@@ -9,4 +9,9 @@ public class PacketReceiveEvent extends CancellableEvent {
     public PacketReceiveEvent(Packet<?> packet) {
         this.packet = packet;
     }
+
+        public Packet getPacket() {
+        return packet;
+    }
+    
 }

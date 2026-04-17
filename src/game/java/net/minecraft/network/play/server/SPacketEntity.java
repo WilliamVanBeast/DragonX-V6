@@ -17,6 +17,10 @@ public class SPacketEntity implements Packet<INetHandlerPlayClient> {
 	protected boolean onGround;
 	protected boolean rotating;
 
+	public int getEntityId() {
+        return entityId;
+    }
+
 	public SPacketEntity() {
 	}
 
