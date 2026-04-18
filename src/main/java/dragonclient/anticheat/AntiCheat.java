@@ -1,9 +1,9 @@
 package dragonclient.anticheat;
 
+import net.lax1dude.eaglercraft.EaglercraftUUID;
 import net.minecraft.client.Minecraft;
 
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import dragonclient.anticheat.data.PlayerData;
@@ -12,7 +12,7 @@ public class AntiCheat {
 
     public static final AntiCheat INSTANCE = new AntiCheat();
 
-    private final Map<UUID, PlayerData> players = new ConcurrentHashMap<>();
+    private final Map<EaglercraftUUID, PlayerData> players = new ConcurrentHashMap<>();
 
     public void handlePlayers() {
         players.values().stream().filter(this::hasEntity).forEach(PlayerData::updateTicks);
@@ -23,7 +23,7 @@ public class AntiCheat {
         return Minecraft.getMinecraft().world.playerEntities.contains(data.getPlayer());
     }
 
-    public Map<UUID, PlayerData> getPlayers() {
+    public Map<EaglercraftUUID, PlayerData> getPlayers() {
         return players;
     }
 }

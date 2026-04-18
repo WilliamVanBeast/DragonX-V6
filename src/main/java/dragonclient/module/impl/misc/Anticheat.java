@@ -1,5 +1,7 @@
 package dragonclient.module.impl.misc;
 
+import java.util.List;
+
 import com.mojang.authlib.GameProfile;
 
 import dragonclient.Dragon;
@@ -10,6 +12,7 @@ import dragonclient.event.Events.UpdateEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class Anticheat extends Module {
 
@@ -34,6 +37,16 @@ public class Anticheat extends Module {
 
        public void onEnable() {
         AntiCheat.INSTANCE.getPlayers().clear();
+
+
+        List<EntityPlayer> list = mc.world.playerEntities;
+
+        for(int i = 0, j = list.size(); i < j; ++i) {
+             EntityPlayer player = list.get(i);
+        if(player != mc.player) {
+             AntiCheat.INSTANCE.getPlayers().put(player.getUniqueID(), new PlayerData(player));
+    }
+}
 
         /*         mc.world.playerEntities.stream().filter(e -> e != mc.thePlayer)
             .forEach(e -> AntiCheat.INSTANCE.getPlayers().put(e.getUniqueID(), new PlayerData((EntityOtherPlayerMP) e)));

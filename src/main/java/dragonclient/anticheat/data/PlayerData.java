@@ -1,6 +1,7 @@
 package dragonclient.anticheat.data;
 
 import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketEntityTeleport;
 
@@ -13,7 +14,7 @@ import dragonclient.anticheat.data.tracker.impl.MovementTracker;
 
 public class PlayerData {
 
-    private final EntityOtherPlayerMP player;
+    private final EntityPlayer player;
 
     private final MovementTracker movementTracker;
     private final AimTracker aimTracker;
@@ -24,7 +25,7 @@ public class PlayerData {
 
     private long lastTeleport;
 
-    public PlayerData(EntityOtherPlayerMP player) {
+    public PlayerData(EntityPlayer player) {
         this.player = player;
 
         this.movementTracker = new MovementTracker(this);
@@ -46,7 +47,7 @@ public class PlayerData {
         ticksExisted++;
     }
 
-    public EntityOtherPlayerMP getPlayer() {
+    public EntityPlayer getPlayer() {
         return player;
     }
 
