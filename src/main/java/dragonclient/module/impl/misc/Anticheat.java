@@ -2,7 +2,6 @@ package dragonclient.module.impl.misc;
 
 import java.util.List;
 
-import com.mojang.authlib.GameProfile;
 
 import dragonclient.Dragon;
 import dragonclient.anticheat.AntiCheat;
@@ -11,7 +10,6 @@ import dragonclient.event.Events.PacketReceiveEvent;
 import dragonclient.event.Events.UpdateEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
-import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class Anticheat extends Module {

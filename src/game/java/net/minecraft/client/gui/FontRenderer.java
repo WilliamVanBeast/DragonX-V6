@@ -65,7 +65,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
 	 * If true, the Unicode Bidirectional Algorithm should be run before rendering
 	 * any string.
 	 */
-	private boolean bidiFlag;
+	protected boolean bidiFlag;
 
 	/** Used to specify new red value for the current color. */
 	protected float red;
