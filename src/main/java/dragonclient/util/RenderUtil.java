@@ -7,10 +7,13 @@ import org.lwjgl.opengl.GL11;
 import dragonclient.util.java.awt.Color;
 import net.lax1dude.eaglercraft.opengl.EaglercraftGPU;
 import net.lax1dude.eaglercraft.opengl.GlStateManager;
+import net.lax1dude.eaglercraft.opengl.OpenGlHelper;
 import net.lax1dude.eaglercraft.opengl.WorldRenderer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 public final class RenderUtil {
@@ -46,6 +49,19 @@ public final class RenderUtil {
         GlStateManager.enableTexture2D();
         GlStateManager.popMatrix();
     }
+
+    public static void drawImage(double x, double y, double width, double height, ResourceLocation image, int color) {
+      GL11.glDisable(2929);
+      GlStateManager.enableBlend();
+      GL11.glDepthMask(false);
+      color(color);
+      Minecraft.getMinecraft().getTextureManager().bindTexture(image);
+      Gui.drawModalRectWithCustomSizedTexture((float)x, (float)y, 0.0F, 0.0F, width, height, width, height);
+      GlStateManager.resetColor();
+      GL11.glDepthMask(true);
+      GlStateManager.disableBlend();
+      GL11.glEnable(2929);
+   }
 
     public static void drawRect(double left, double top, double right, double bottom, final int color) {
         if (left < right) {
@@ -143,6 +159,8 @@ public static void drawChromaString(final String string, final int x, final int 
             xTmp += mc.fontRendererObj.getCharWidth(textChar);
         }
     }
+
+    
     
     	public static void drawPoint(double x, double y, int color, float size) {
 		GL11.glPushMatrix();

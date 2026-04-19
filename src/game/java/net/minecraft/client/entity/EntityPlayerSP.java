@@ -1165,4 +1165,8 @@ public class EntityPlayerSP extends AbstractClientPlayer {
 			}
 		}
 	}
+
+	public boolean isMoving() {
+		return this.moveForward != 0 || this.moveStrafing != 0;
+	}
 }

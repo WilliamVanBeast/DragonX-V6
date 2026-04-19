@@ -12,9 +12,11 @@ import dragonclient.ui.mainmenu.buttons.MenuButton;
 import dragonclient.util.Particle;
 import dragonclient.util.PositionUtils;
 import dragonclient.util.RenderUtil;
+import net.lax1dude.eaglercraft.EagRuntime;
 import net.lax1dude.eaglercraft.profile.GuiScreenEditProfile;
 import net.lax1dude.eaglercraft.sp.gui.GuiScreenIntegratedServerStartup;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
@@ -34,6 +36,7 @@ public class Menu extends GuiScreen{
 	public void initGui() {
 		buttons.clear();
 		particles.clear();
+
 		
 		//init button
 		startTime = System.nanoTime();		
@@ -41,7 +44,7 @@ public class Menu extends GuiScreen{
 		buttons.add(new MenuButton("Multi Player", new PositionUtils(this.width/2-50, this.height/2-60, 100, 20,1), 2));
 		buttons.add(new MenuButton("Edit Profile", new PositionUtils(this.width/2-50, this.height/2-40, 100, 20,1), 3));
 		buttons.add(new MenuButton("Settings", new PositionUtils(this.width/2-50, this.height/2-20, 100, 20,1), 4));
-		buttons.add(new MenuButton("Exit", new PositionUtils(this.width/2-50, this.height/2, 100, 20,1), 5));
+		buttons.add(new MenuButton("Discord", new PositionUtils(this.width/2-50, this.height/2, 100, 20,1), 5));
 	}
 
 
@@ -54,6 +57,14 @@ public class Menu extends GuiScreen{
 			for(int i = 0; i < needed; i++) {
 				particles.add(new Particle(RandomUtils.nextInt(0, this.width), RandomUtils.nextInt(0, this.height), RandomUtils.nextInt(2, 4)/2,2, 0xffffffff, RandomUtils.nextInt(0, 360), RandomUtils.nextInt(1000, 3000)));
 			}
+
+			//CHANGELOG
+			
+		mc.fontRendererObj.drawString("§lChangelog For Build: " + "Beta 2", 4, 5, -1);
+        mc.fontRendererObj.drawString("§a§l - Added new modules", 4, 16, -1);
+        mc.fontRendererObj.drawString("§a§l - Added Command System (use .help in chat)", 4, 24, -1);
+		mc.fontRendererObj.drawString("§a§l - Added Anticheat", 4, 32, -1);
+		mc.fontRendererObj.drawString("§a§l - Added new modules", 4, 40, -1);
 		}
 		
 		
@@ -82,11 +93,15 @@ public class Menu extends GuiScreen{
 				}
 			}
 		}
-		mc.fontRendererObj.drawString("DragonX", width/2-mc.fontRendererObj.getStringWidth("DragonX")/2, this.height/2-90-20, 0xffcccccc);
+		//mc.fontRendererObj.drawString("DragonX", width/2-mc.fontRendererObj.getStringWidth("DragonX")/2, this.height/2-90-20, 0xffcccccc);
 		for(MenuButton b : buttons) {
 			b.draw(mouseX, mouseY);
 		}
 		super.drawScreen(mouseX, mouseY, partialTicks);
+
+		RenderUtil.drawImage(
+         (double)(this.width / 2 - 80), (double)(this.height / 2 - 60 - 60), 160.0, 40.0, new ResourceLocation("dragonx/dragonx-logo.png"), -1
+      );
 	}
 
 
@@ -106,7 +121,7 @@ public class Menu extends GuiScreen{
 					mc.displayGuiScreen(new GuiScreenEditProfile(this));
 					return;
 				case 5:
-					this.mc.shutdown();
+					EagRuntime.openLink("https://discord.gg/aMhGfybKs4");
 					return;
 				case 4:
 					mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));

@@ -49,7 +49,7 @@ def name = "classes.js"
 
 teavm.js {
     compileJava.options.encoding = "UTF-8"
-    obfuscated = false // Change to "true" for release, used for debugging
+    obfuscated = true // Change to "true" for release, used for debugging
     sourceMap = true
     targetFileName = "../" + name
     optimization = OptimizationLevel.AGGRESSIVE // Change to "AGGRESSIVE" for release

@@ -204,10 +204,10 @@ public class Gui {
 	 * Draws a textured rectangle at z = 0. Args: x, y, u, v, width, height,
 	 * textureWidth, textureHeight
 	 */
-	public static void drawModalRectWithCustomSizedTexture(int x, int y, float u, float v, int width, int height,
-			float textureWidth, float textureHeight) {
-		float f = 1.0F / textureWidth;
-		float f1 = 1.0F / textureHeight;
+	public static void drawModalRectWithCustomSizedTexture(float x, float y, float u, float v, double width, double height,
+			double width2, double height2) {
+		double f = 1.0 / width2;
+		double f1 = 1.0 / height2;
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer bufferbuilder = tessellator.getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);

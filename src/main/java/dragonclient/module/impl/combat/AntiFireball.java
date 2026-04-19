@@ -1,19 +1,15 @@
 package dragonclient.module.impl.combat;
 
 
-import java.util.Random;
-
 import dragonclient.Dragon;
 import dragonclient.event.Events.UpdateEvent;
 import dragonclient.module.Category;
-import dragonclient.module.Setting;
 import dragonclient.module.settings.FloatSetting;
 import dragonclient.module.settings.IntegerSetting;
 import dragonclient.util.TimeUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.MathHelper;
 
 public class AntiFireball extends dragonclient.module.Module {
    public static EntityFireball target = null;

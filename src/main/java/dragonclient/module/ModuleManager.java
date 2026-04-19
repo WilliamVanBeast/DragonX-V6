@@ -17,6 +17,7 @@ import dragonclient.module.impl.misc.KillMessage;
 import dragonclient.module.impl.misc.XCarry;
 import dragonclient.module.impl.movement.InvMove;
 import dragonclient.module.impl.movement.No003;
+import dragonclient.module.impl.movement.Sprint;
 import dragonclient.module.impl.player.Blink;
 import dragonclient.module.impl.render.ESP;
 import dragonclient.module.impl.render.Fullbright;
@@ -66,7 +67,7 @@ public class ModuleManager {
         registerModule(new Blink());
         registerModule(new Anticheat());
         registerModule(new Debugger());
-
+        registerModule(new Sprint());
     }
 
     /**
