@@ -4,14 +4,14 @@ import net.lax1dude.eaglercraft.opengl.ImageData;
 
 public class FontAtlasData {
 
-	public final ImageData image;
-	public final int lineHeight;
-	public final int baseline;
-	public final int[] glyphX;
-	public final int[] glyphY;
-	public final int[] glyphW;
-	public final int[] glyphH;
-	public final int[] advance;
+	public ImageData image;
+	public int lineHeight;
+	public int baseline;
+	public int[] glyphX;
+	public int[] glyphY;
+	public int[] glyphW;
+	public int[] glyphH;
+	public int[] advance;
 
 	public FontAtlasData(ImageData image, int lineHeight, int baseline, int[] glyphX, int[] glyphY, int[] glyphW, int[] glyphH,
 						 int[] advance) {

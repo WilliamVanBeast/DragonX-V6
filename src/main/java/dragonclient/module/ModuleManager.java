@@ -12,6 +12,7 @@ import dragonclient.module.impl.combat.Criticals;
 import dragonclient.module.impl.combat.NoClickDelay;
 import dragonclient.module.impl.misc.Anticheat;
 import dragonclient.module.impl.misc.ClientSpoofer;
+import dragonclient.module.impl.misc.Debugger;
 import dragonclient.module.impl.misc.KillMessage;
 import dragonclient.module.impl.misc.XCarry;
 import dragonclient.module.impl.movement.InvMove;
@@ -64,6 +65,7 @@ public class ModuleManager {
         registerModule(new XRay());
         registerModule(new Blink());
         registerModule(new Anticheat());
+        registerModule(new Debugger());
 
     }
 
