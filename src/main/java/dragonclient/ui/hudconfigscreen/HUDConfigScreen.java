@@ -25,6 +25,7 @@ public class HUDConfigScreen extends GuiScreen{
         super.drawScreen(i, j, var3);
     }
 
+    
     @Override
     protected void actionPerformed(GuiButton parGuiButton) {
         if(parGuiButton.id == 1) {

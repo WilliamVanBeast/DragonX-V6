@@ -10,7 +10,10 @@ import dragonclient.module.impl.combat.AntiFireball;
 import dragonclient.module.impl.combat.Autoclicker;
 import dragonclient.module.impl.combat.Criticals;
 import dragonclient.module.impl.combat.NoClickDelay;
+import dragonclient.module.impl.hud.Compass;
 import dragonclient.module.impl.hud.ConfigScreen;
+import dragonclient.module.impl.hud.Fps;
+import dragonclient.module.impl.hud.Keystrokes;
 import dragonclient.module.impl.misc.Anticheat;
 import dragonclient.module.impl.misc.ClientSpoofer;
 import dragonclient.module.impl.misc.Debugger;
@@ -70,6 +73,9 @@ public class ModuleManager {
         registerModule(new Debugger());
         registerModule(new Sprint());
         registerModule(new ConfigScreen());
+        registerModule(new Fps());
+        registerModule(new Compass());
+        registerModule(new Keystrokes());
     }
 
     /**

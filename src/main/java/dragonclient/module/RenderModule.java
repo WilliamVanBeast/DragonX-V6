@@ -5,11 +5,12 @@ import dragonclient.util.java.awt.Color;
 import net.lax1dude.eaglercraft.Mouse;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 
 public class RenderModule extends Module {
     public int x, y, lastX, lastY, width, height;
     private boolean dragging;
-    public RenderModule(String name, int k, Category cat, int x, int y, int width, int height) {
+    public RenderModule(String name, Category cat, int x, int y, int width, int height) {
         super(name, cat);
         this.x = x;
 		this.y = y;
