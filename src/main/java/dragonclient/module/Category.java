@@ -6,7 +6,8 @@ public enum Category {
     MOVEMENT("Movement"),
     PLAYER("Player"),
     RENDER("Render"),
-    MISC("Misc");
+    MISC("Misc"),
+    HUD("HUD");
 
     public String mname;
     public int i;

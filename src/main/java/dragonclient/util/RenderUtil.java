@@ -160,6 +160,13 @@ public static void drawChromaString(final String string, final int x, final int 
         }
     }
 
+        public static void drawRectOutline(double param1, double param2, double width1, double height1, int color) {
+        drawRect(param1, param2, width1, param2 + 1, color);
+        drawRect(param1, param2, param1 + 1, height1, color);
+        drawRect(width1 - 1, param2, width1, height1, color);
+        drawRect(param1, height1 - 1, width1, height1, color);
+    }
+
     
     
     	public static void drawPoint(double x, double y, int color, float size) {

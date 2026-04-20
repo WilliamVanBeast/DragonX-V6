@@ -8,6 +8,7 @@ import com.google.common.collect.Ordering;
 
 import dragonclient.Dragon;
 import dragonclient.event.Events.Render2DEvent;
+import dragonclient.module.RenderModule;
 
 import java.util.Collection;
 import java.util.List;
@@ -343,6 +344,12 @@ public class GuiIngame extends Gui {
 		} else {
 			this.overlayPlayerList.updatePlayerList(true);
 			this.overlayPlayerList.renderPlayerlist(i, scoreboard, scoreobjective1);
+		}
+
+		for(dragonclient.module.Module m : Dragon.moduleManager.modules) {
+			if(m.isEnabled() && m instanceof RenderModule) {
+				((RenderModule)m).draw();
+			}
 		}
 
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

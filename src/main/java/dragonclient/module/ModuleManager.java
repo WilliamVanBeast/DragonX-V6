@@ -10,6 +10,7 @@ import dragonclient.module.impl.combat.AntiFireball;
 import dragonclient.module.impl.combat.Autoclicker;
 import dragonclient.module.impl.combat.Criticals;
 import dragonclient.module.impl.combat.NoClickDelay;
+import dragonclient.module.impl.hud.ConfigScreen;
 import dragonclient.module.impl.misc.Anticheat;
 import dragonclient.module.impl.misc.ClientSpoofer;
 import dragonclient.module.impl.misc.Debugger;
@@ -31,7 +32,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class ModuleManager {
 
-    private final TreeSet<Module> modules = new TreeSet<>(
+    public final TreeSet<Module> modules = new TreeSet<>(
             (module1, module2) -> module1.getName().compareTo(module2.getName()));
     private final HashMap<Class<?>, Module> moduleClassMap = new HashMap<>();
 
@@ -68,6 +69,7 @@ public class ModuleManager {
         registerModule(new Anticheat());
         registerModule(new Debugger());
         registerModule(new Sprint());
+        registerModule(new ConfigScreen());
     }
 
     /**

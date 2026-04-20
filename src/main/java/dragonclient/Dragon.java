@@ -1,5 +1,6 @@
 package dragonclient;
 
+import dragonclient.ui.hudconfigscreen.HUDConfigScreen;
 import dragonclient.ui.newclickgui.*;
 import dragonclient.util.notifications.NotificationManager;
 import dragonclient.module.ModuleManager;
@@ -19,6 +20,7 @@ public class Dragon {
     public static EventManager eventManager;
     public static NotificationManager notificationManager;
     public static CommandManager commandManager;
+    public static HUDConfigScreen hudConfigScreen;
 
     
 
@@ -41,6 +43,7 @@ public class Dragon {
         return true;
     }
     public final static ClickGui getClickgui() { return clickGui; }
+    public final static HUDConfigScreen getHUDConfigScreen() { return hudConfigScreen; }
 
     public static long startTime = System.currentTimeMillis();
 
