@@ -1,14 +1,14 @@
-package dragonclient.anticheat.check.impl;
+package dragonclient.anticheat.check.impl.movement;
 
 import dragonclient.anticheat.check.Check;
 import dragonclient.anticheat.data.PlayerData;
 import net.minecraft.network.Packet;
 
 
-@Check.Info(name = "Step")
-public class StepCheck extends Check {
+@Check.Info(name = "Step A")
+public class StepA extends Check {
 
-    public StepCheck(PlayerData data) {
+    public StepA(PlayerData data) {
         super(data);
     }
 

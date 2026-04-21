@@ -15,7 +15,7 @@ public abstract class Check {
     protected final PlayerData data;
     private final TimeUtil delay;
 
-    private double buffer;
+    protected double buffer;
 
     public Check(PlayerData data) {
         this.name = getClass().getAnnotation(Info.class).name();

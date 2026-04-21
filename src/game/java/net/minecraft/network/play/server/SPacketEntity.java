@@ -8,13 +8,13 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.world.World;
 
 public class SPacketEntity implements Packet<INetHandlerPlayClient> {
-	protected int entityId;
-	protected int posX;
-	protected int posY;
-	protected int posZ;
-	protected byte yaw;
-	protected byte pitch;
-	protected boolean onGround;
+	public int entityId;
+	public int posX;
+	public int posY;
+	public int posZ;
+	public byte yaw;
+	public byte pitch;
+	public boolean onGround;
 	protected boolean rotating;
 
 	public int getEntityId() {

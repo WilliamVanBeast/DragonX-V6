@@ -1,15 +1,14 @@
-package dragonclient.anticheat.check.impl;
+package dragonclient.anticheat.check.impl.movement;
 
 import dragonclient.anticheat.check.Check;
 import dragonclient.anticheat.data.PlayerData;
 import net.minecraft.network.Packet;
 import net.minecraft.potion.Potion;
 
+@Check.Info(name = "Speed A")
+public class SpeedA extends Check {
 
-@Check.Info(name = "Invalid Move")
-public class InvalidCheck extends Check {
-
-    public InvalidCheck(PlayerData data) {
+    public SpeedA(PlayerData data) {
         super(data);
     }
 
@@ -36,5 +35,5 @@ public class InvalidCheck extends Check {
         }
         reduceBuffer(0.05);
     }
-
+    
 }

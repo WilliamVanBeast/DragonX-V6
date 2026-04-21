@@ -1,4 +1,4 @@
-package dragonclient.anticheat.check.impl;
+package dragonclient.anticheat.check.impl.movement;
 
 import dragonclient.anticheat.check.Check;
 import dragonclient.anticheat.data.PlayerData;

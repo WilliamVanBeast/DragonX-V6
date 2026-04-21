@@ -6,10 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import dragonclient.anticheat.check.impl.GroundCheck;
-import dragonclient.anticheat.check.impl.InvalidCheck;
-import dragonclient.anticheat.check.impl.MoveCheck;
-import dragonclient.anticheat.check.impl.StepCheck;
+import dragonclient.anticheat.check.impl.combat.AutoClickerA;
+import dragonclient.anticheat.check.impl.movement.InvMoveA;
+import dragonclient.anticheat.check.impl.movement.MoveCheck;
+import dragonclient.anticheat.check.impl.movement.SpeedA;
+import dragonclient.anticheat.check.impl.movement.SpeedB;
+import dragonclient.anticheat.check.impl.movement.StepA;
+import dragonclient.anticheat.check.impl.other.GroundSpoofA;
+import dragonclient.anticheat.check.impl.other.GroundSpoofB;
+import dragonclient.anticheat.check.impl.other.InvalidA;
 import dragonclient.anticheat.data.PlayerData;
 
 public class CheckStorage {
@@ -18,10 +23,15 @@ public class CheckStorage {
 
     private final List<Constructor<?>> CONSTRUCTORS = new ArrayList<>();
     Class<?>[] checkClasses = new Class[] {
-            InvalidCheck.class,
-            StepCheck.class,
-            GroundCheck.class,
+            InvalidA.class,
+            SpeedA.class,
+            SpeedB.class,
+            StepA.class,
+            GroundSpoofA.class,
+            GroundSpoofB.class,
             MoveCheck.class,
+            InvMoveA.class,
+            AutoClickerA.class
     };
 
     public void init() {
