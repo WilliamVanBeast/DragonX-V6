@@ -7,13 +7,21 @@ import java.util.stream.Collectors;
 
 import dragonclient.Dragon;
 import dragonclient.module.impl.combat.AntiFireball;
+import dragonclient.module.impl.combat.AttackCrash;
+import dragonclient.module.impl.combat.AutoTotem;
 import dragonclient.module.impl.combat.Autoclicker;
+import dragonclient.module.impl.combat.ComboOneHit;
 import dragonclient.module.impl.combat.Criticals;
+import dragonclient.module.impl.combat.FastBow;
 import dragonclient.module.impl.combat.NoClickDelay;
+import dragonclient.module.impl.combat.Regen;
+import dragonclient.module.impl.combat.Velocity;
+import dragonclient.module.impl.combat.WTap;
 import dragonclient.module.impl.hud.Compass;
 import dragonclient.module.impl.hud.ConfigScreen;
 import dragonclient.module.impl.hud.Fps;
 import dragonclient.module.impl.hud.Keystrokes;
+import dragonclient.module.impl.hud.Radar;
 import dragonclient.module.impl.misc.Anticheat;
 import dragonclient.module.impl.misc.ClientSpoofer;
 import dragonclient.module.impl.misc.Debugger;
@@ -23,6 +31,8 @@ import dragonclient.module.impl.movement.InvMove;
 import dragonclient.module.impl.movement.No003;
 import dragonclient.module.impl.movement.Sprint;
 import dragonclient.module.impl.player.Blink;
+import dragonclient.module.impl.player.NoFall;
+import dragonclient.module.impl.render.ChinaHat;
 import dragonclient.module.impl.render.ESP;
 import dragonclient.module.impl.render.Fullbright;
 import dragonclient.module.impl.render.HUD;
@@ -76,6 +86,15 @@ public class ModuleManager {
         registerModule(new Fps());
         registerModule(new Compass());
         registerModule(new Keystrokes());
+        registerModule(new AttackCrash());
+        registerModule(new WTap());
+        registerModule(new Regen());
+        registerModule(new ComboOneHit());
+        registerModule(new ChinaHat());
+        registerModule(new AutoTotem());
+        registerModule(new Velocity());
+        registerModule(new NoFall());
+        registerModule(new FastBow());
     }
 
     /**

@@ -9,4 +9,8 @@ public class AttackEvent extends CancellableEvent {
     public AttackEvent(Entity target) {
         this.target = target;
     }
+
+    public Entity getTarget() {
+        return target;
+    }
 }

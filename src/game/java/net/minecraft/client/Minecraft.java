@@ -236,7 +236,7 @@ public class Minecraft implements IThreadListener {
 
 	public WorldClient world;
 	public RenderGlobal renderGlobal;
-	private RenderManager renderManager;
+	public RenderManager renderManager;
 	private RenderItem renderItem;
 	private ItemRenderer itemRenderer;
 	public EntityPlayerSP player;

@@ -167,6 +167,16 @@ public static void drawChromaString(final String string, final int x, final int 
         drawRect(param1, height1 - 1, width1, height1, color);
     }
 
+        public static void drawImage(double x, double y, int width, int height, ResourceLocation rec) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        Minecraft.getMinecraft().getTextureManager().bindTexture(rec);
+        GL11.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        GL11.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        Gui.drawModalRectWithCustomSizedTexture((float) x, (float) y, 0, 0, width, height, width, height);
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
+    }
     
     
     	public static void drawPoint(double x, double y, int color, float size) {
