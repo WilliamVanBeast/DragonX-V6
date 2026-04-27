@@ -18,7 +18,7 @@ import net.minecraft.network.play.client.CPacketEntityAction;
 
 public class AutoTotem extends Module {
     private IntegerSetting health = new IntegerSetting("Health", 10, 1, 36);
-    private ListSetting itemMode = new ListSetting("Item", new String[] {"Crystal", "Totem", "Sword", "Gapple"}, "Crystal");
+    private ListSetting itemMode = new ListSetting("Item", new String[] {"Crystal", "Totem", "Sword", "Gapple"}, "Totem");
     private IntegerSetting delay = new IntegerSetting("Delay", 20, 0, 70);
     public AutoTotem() {
         super("Auto Totem", Category.COMBAT);

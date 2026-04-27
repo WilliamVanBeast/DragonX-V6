@@ -36,6 +36,8 @@ import dragonclient.module.impl.render.ChinaHat;
 import dragonclient.module.impl.render.ESP;
 import dragonclient.module.impl.render.Fullbright;
 import dragonclient.module.impl.render.HUD;
+import dragonclient.module.impl.render.NameTags;
+import dragonclient.module.impl.render.SkeletonESP;
 import dragonclient.module.impl.render.Tracers;
 import dragonclient.module.impl.render.Trails;
 import dragonclient.module.impl.render.XRay;
@@ -95,6 +97,8 @@ public class ModuleManager {
         registerModule(new Velocity());
         registerModule(new NoFall());
         registerModule(new FastBow());
+        registerModule(new NameTags());
+        registerModule(new SkeletonESP());
     }
 
     /**

@@ -15,7 +15,7 @@ import net.minecraft.network.play.client.CPacketPlayer;
 public class NoFall extends Module {
 
         private final ListSetting mode = new ListSetting("Mode", new String[]{"Ground Spoof",
-            "No Ground", "Tick", "Packet", "Collision", "Collision Silent", "Verus", "Math Ground", "Less Fall", "Vulcan"}, "Ground Spoof");
+            "No Ground", "Tick", "Packet", "Collision", "Collision Silent", "Verus", "Math Ground", "Less Fall", "Vulcan", "Artemis 2", "Less Fall"}, "Ground Spoof");
 
     private final BooleanSetting offset = new BooleanSetting("Offset", true);
 

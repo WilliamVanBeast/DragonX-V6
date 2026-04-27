@@ -7,6 +7,7 @@ import dragonclient.event.Events.Render3DEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
 import dragonclient.module.settings.BooleanSetting;
+import dragonclient.module.settings.ColorSetting;
 import dragonclient.module.settings.ListSetting;
 import dragonclient.util.java.awt.Color;
 import net.lax1dude.eaglercraft.opengl.GlStateManager;

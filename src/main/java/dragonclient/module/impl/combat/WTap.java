@@ -11,7 +11,7 @@ import net.minecraft.network.play.client.CPacketEntityAction;
 
 public class WTap extends Module {
 
-    private final BooleanSetting legit = new BooleanSetting("Legit", false);
+    private final BooleanSetting legit = new BooleanSetting("Legit", true);
 
     public WTap() {
         super("WTap", Category.COMBAT);

@@ -8,26 +8,45 @@ import net.minecraft.nbt.NBTTagCompound;
 public class FloatSetting extends Setting<Float> {
     private final float minimum;
     private final float maximum;
+    private final float increment;
     private final String suffix;
 
-    public FloatSetting(String name, Float value, float minimum, float maximum, String suffix,
+    public FloatSetting(String name, Float value, float minimum, float maximum, float increment, String suffix,
             Supplier<Boolean> displayable) {
         super(name, value, displayable);
         this.minimum = minimum;
         this.maximum = maximum;
+        this.increment = increment;
         this.suffix = suffix;
     }
 
+    public FloatSetting(String name, Float value, float minimum, float maximum, float increment, Supplier<Boolean> displayable) {
+        this(name, value, minimum, maximum, increment, "", displayable);
+    }
+
+    public FloatSetting(String name, Float value, float minimum, float maximum, float increment, String suffix) {
+        this(name, value, minimum, maximum, increment, suffix, () -> true);
+    }
+
+    public FloatSetting(String name, Float value, float minimum, float maximum, float increment) {
+        this(name, value, minimum, maximum, increment, () -> true);
+    }
+
+    public FloatSetting(String name, Float value, float minimum, float maximum, String suffix,
+            Supplier<Boolean> displayable) {
+        this(name, value, minimum, maximum, 0.1f, suffix, displayable);
+    }
+
     public FloatSetting(String name, Float value, float minimum, float maximum, Supplier<Boolean> displayable) {
-        this(name, value, minimum, maximum, "", displayable);
+        this(name, value, minimum, maximum, 0.1f, "", displayable);
     }
 
     public FloatSetting(String name, Float value, float minimum, float maximum, String suffix) {
-        this(name, value, minimum, maximum, suffix, () -> true);
+        this(name, value, minimum, maximum, 0.1f, suffix, () -> true);
     }
 
     public FloatSetting(String name, Float value, float minimum, float maximum) {
-        this(name, value, minimum, maximum, () -> true);
+        this(name, value, minimum, maximum, 0.1f, () -> true);
     }
 
     public void set(Number newValue) {
@@ -40,6 +59,10 @@ public class FloatSetting extends Setting<Float> {
 
     public float getMaximum() {
         return maximum;
+    }
+
+    public float getIncrement() {
+        return increment;
     }
 
     public String getSuffix() {
