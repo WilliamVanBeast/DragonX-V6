@@ -13,6 +13,7 @@ import dragonclient.module.impl.combat.Autoclicker;
 import dragonclient.module.impl.combat.ComboOneHit;
 import dragonclient.module.impl.combat.Criticals;
 import dragonclient.module.impl.combat.FastBow;
+import dragonclient.module.impl.combat.KnockbackDisplacer;
 import dragonclient.module.impl.combat.NoClickDelay;
 import dragonclient.module.impl.combat.Regen;
 import dragonclient.module.impl.combat.Velocity;
@@ -37,7 +38,6 @@ import dragonclient.module.impl.render.ESP;
 import dragonclient.module.impl.render.Fullbright;
 import dragonclient.module.impl.render.HUD;
 import dragonclient.module.impl.render.NameTags;
-import dragonclient.module.impl.render.SkeletonESP;
 import dragonclient.module.impl.render.Tracers;
 import dragonclient.module.impl.render.Trails;
 import dragonclient.module.impl.render.XRay;
@@ -98,7 +98,7 @@ public class ModuleManager {
         registerModule(new NoFall());
         registerModule(new FastBow());
         registerModule(new NameTags());
-        registerModule(new SkeletonESP());
+        registerModule(new KnockbackDisplacer());
     }
 
     /**

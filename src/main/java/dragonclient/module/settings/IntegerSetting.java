@@ -8,45 +8,26 @@ import net.minecraft.nbt.NBTTagCompound;
 public class IntegerSetting extends Setting<Integer> {
     private final int minimum;
     private final int maximum;
-    private final int increment;
     private final String suffix;
 
-    public IntegerSetting(String name, Integer value, int minimum, int maximum, int increment, String suffix,
+    public IntegerSetting(String name, Integer value, int minimum, int maximum, String suffix,
             Supplier<Boolean> displayable) {
         super(name, value, displayable);
         this.minimum = minimum;
         this.maximum = maximum;
-        this.increment = increment;
         this.suffix = suffix;
     }
 
-    public IntegerSetting(String name, Integer value, int minimum, int maximum, int increment, Supplier<Boolean> displayable) {
-        this(name, value, minimum, maximum, increment, "", displayable);
-    }
-
-    public IntegerSetting(String name, Integer value, int minimum, int maximum, int increment, String suffix) {
-        this(name, value, minimum, maximum, increment, suffix, () -> true);
-    }
-
-    public IntegerSetting(String name, Integer value, int minimum, int maximum, int increment) {
-        this(name, value, minimum, maximum, increment, () -> true);
-    }
-
-    public IntegerSetting(String name, Integer value, int minimum, int maximum, String suffix,
-            Supplier<Boolean> displayable) {
-        this(name, value, minimum, maximum, 1, suffix, displayable);
-    }
-
     public IntegerSetting(String name, Integer value, int minimum, int maximum, Supplier<Boolean> displayable) {
-        this(name, value, minimum, maximum, 1, "", displayable);
+        this(name, value, minimum, maximum, "", displayable);
     }
 
     public IntegerSetting(String name, Integer value, int minimum, int maximum, String suffix) {
-        this(name, value, minimum, maximum, 1, suffix, () -> true);
+        this(name, value, minimum, maximum, suffix, () -> true);
     }
 
     public IntegerSetting(String name, Integer value, int minimum, int maximum) {
-        this(name, value, minimum, maximum, 1, () -> true);
+        this(name, value, minimum, maximum, () -> true);
     }
 
     public void set(Number newValue) {
@@ -59,10 +40,6 @@ public class IntegerSetting extends Setting<Integer> {
 
     public int getMaximum() {
         return maximum;
-    }
-
-    public int getIncrement() {
-        return increment;
     }
 
     public String getSuffix() {

@@ -255,7 +255,7 @@ public class EntityPlayerSP extends AbstractClientPlayer {
 	 * called every tick when the player is on foot. Performs all the things that
 	 * normally happen during movement.
 	 */
-	private void onUpdateWalkingPlayer() {
+	public void onUpdateWalkingPlayer() {
 
 		PreMotionEvent event = new PreMotionEvent(this.rotationYaw, this.rotationPitch, this.onGround, this.posX,
 		this.getEntityBoundingBox().minY, this.posZ);

@@ -6,6 +6,7 @@ import dragonclient.module.Module;
 import dragonclient.module.Setting;
 import dragonclient.module.settings.BooleanSetting;
 import dragonclient.module.settings.ColorSetting;
+import dragonclient.module.settings.DoubleSetting;
 import dragonclient.module.settings.FloatSetting;
 import dragonclient.module.settings.IntegerSetting;
 import dragonclient.module.settings.KeySetting;
@@ -227,6 +228,40 @@ public class ModuleElement extends ButtonElement {
                         }
 
                         text = value.getName() + "§f: §c" + ((IntegerSetting) value).get();
+
+                        GlStateManager.resetColor();
+                        font.drawString(text, getX() + 2, ypos + 4, Colors.textColor);
+                        ypos += 12;
+                    } else if (value instanceof DoubleSetting) {
+                        String text = value.getName() + "§f: §c"
+                                + Math.round(((DoubleSetting) value).get() * 100) / 100.0;
+                        float textWidth = font.getStringWidth(text);
+                        if (getSettingsWidth() < textWidth + 8) {
+                            setSettingsWidth(textWidth + 8);
+                        }
+                        RenderUtil.drawRect(getX() + 1, ypos + 2, getX() + getSettingsWidth(), ypos + 14,
+                                color);
+
+                        double sliderValue = getX() + 1 + (getSettingsWidth() - 6)
+                                * (((DoubleSetting) value).get() - ((DoubleSetting) value).getMinimum())
+                                / (((DoubleSetting) value).getMaximum() - ((DoubleSetting) value).getMinimum());
+                        if (sliderValue < getX() + 1)
+                            sliderValue = getX() + 1;
+                        if (sliderValue > getX() + getSettingsWidth() - 6)
+                            sliderValue = getX() + getSettingsWidth() - 6;
+                        GlStateManager.enableBlend();
+                        RenderUtil.drawRect((float)sliderValue, ypos + 2, (float)sliderValue + 6, ypos + 14, Colors.sliderColor);
+                        GlStateManager.disableBlend();
+                        if (isHovering(mouseX, mouseY, getX(), ypos + 2, (int) getSettingsWidth(), 11)) {
+                            if (Mouse.isButtonDown(0)) {
+                                double newValue = ((DoubleSetting) value).getMinimum()
+                                        + (((DoubleSetting) value).getMaximum() - ((DoubleSetting) value).getMinimum())
+                                                * (mouseX - getX()) / getSettingsWidth();
+                                ((DoubleSetting) value).set(newValue);
+                            }
+                        }
+
+                        text = value.getName() + "§f: §c" + Math.round(((DoubleSetting) value).get() * 100) / 100.0;
 
                         GlStateManager.resetColor();
                         font.drawString(text, getX() + 2, ypos + 4, Colors.textColor);
