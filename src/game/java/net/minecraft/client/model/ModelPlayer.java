@@ -1,8 +1,10 @@
 package net.minecraft.client.model;
 
+import dragonclient.module.impl.render.SkeletonEsp;
 import net.lax1dude.eaglercraft.opengl.GlStateManager;
 import net.lax1dude.eaglercraft.opengl.RealOpenGLEnums;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHandSide;
 
 public class ModelPlayer extends ModelBiped {
@@ -125,6 +127,10 @@ public class ModelPlayer extends ModelBiped {
 			this.bipedCape.rotationPointY = 2.0F;
 		} else {
 			this.bipedCape.rotationPointY = 0.0F;
+		}
+
+		if (entityIn instanceof EntityPlayer) {
+            SkeletonEsp.addEntity((EntityPlayer) entityIn, this);
 		}
 	}
 
