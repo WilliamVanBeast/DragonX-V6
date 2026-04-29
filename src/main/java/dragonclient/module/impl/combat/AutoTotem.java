@@ -5,6 +5,7 @@ import dragonclient.event.Events.PacketSendEvent;
 import dragonclient.event.Events.TickEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.IntegerSetting;
 import dragonclient.module.settings.ListSetting;
 import net.minecraft.client.Minecraft;
@@ -17,11 +18,12 @@ import net.minecraft.network.play.client.CPacketClickWindow;
 import net.minecraft.network.play.client.CPacketEntityAction;
 
 public class AutoTotem extends Module {
+    private DescriptionSetting description = new DescriptionSetting("Description", "Automatically switches totems to your offhand when your health is low.");
     private IntegerSetting health = new IntegerSetting("Health", 10, 1, 36);
     private ListSetting itemMode = new ListSetting("Item", new String[] {"Crystal", "Totem", "Sword", "Gapple"}, "Totem");
     private IntegerSetting delay = new IntegerSetting("Delay", 20, 0, 70);
     public AutoTotem() {
-        super("Auto Totem", Category.COMBAT);
+        super("AutoTotem", Category.COMBAT);
         addSettings(health, itemMode, delay);
         Dragon.eventManager.registerListener(this, TickEvent.class);
         Dragon.eventManager.registerListener(this, PacketSendEvent.class);

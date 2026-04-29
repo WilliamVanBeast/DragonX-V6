@@ -6,10 +6,12 @@ import dragonclient.Dragon;
 import dragonclient.event.Events.PacketReceiveEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketChat;
 
 public class KillMessage extends Module {
+   private DescriptionSetting description = new DescriptionSetting("Description", "Sends a random message from a list of messages when you kill someone.");
    private final String[] messages = new String[]{
       "Get Good Get DragonX", "ac is trash", "ezs", "Autoclient is shit, get DragonX", "DragonX Best", "Killed BY DragonX"
    };
@@ -17,6 +19,7 @@ public class KillMessage extends Module {
    public KillMessage() {
       super("KillMessage", Category.MISC);
       Dragon.eventManager.registerListener(this, PacketReceiveEvent.class);
+      addSettings(description);
    }
    @Override
    public void onPacketReceiveEvent(PacketReceiveEvent event) {

@@ -7,6 +7,7 @@ import dragonclient.event.Events.PreMotionEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
 import dragonclient.module.settings.BooleanSetting;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.ListSetting;
 import dragonclient.util.PacketUtil;
 import dragonclient.util.PlayerUtil;
@@ -14,6 +15,8 @@ import net.minecraft.network.play.client.CPacketPlayer;
 
 public class NoFall extends Module {
 
+
+    private DescriptionSetting description = new DescriptionSetting("Description", "Prevents you from taking fall damage.");
         private final ListSetting mode = new ListSetting("Mode", new String[]{"Ground Spoof",
             "No Ground", "Tick", "Packet", "Collision", "Collision Silent", "Verus", "Math Ground", "Less Fall", "Vulcan", "Artemis 2", "Less Fall"}, "Ground Spoof");
 

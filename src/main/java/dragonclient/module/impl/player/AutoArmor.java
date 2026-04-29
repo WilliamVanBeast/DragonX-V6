@@ -41,7 +41,6 @@ public class AutoArmor extends Module {
             return;
         }
         if (mc.player.openContainer instanceof ContainerChest) {
-            // so it doesn't put on armor immediately after closing a chest
             timer.reset();
         }
         if (timer.hasReached(delay.get())) {

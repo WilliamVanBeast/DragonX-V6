@@ -7,7 +7,7 @@ import dragonclient.event.Listener;
 import dragonclient.event.Events.PacketSendEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
-
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.ListSetting;
 import dragonclient.util.PacketUtil;
 import dragonclient.util.RandomUtil;
@@ -18,6 +18,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 
 public class ClientSpoofer extends Module{
+    private DescriptionSetting description = new DescriptionSetting("Description", "Spoofs your client brand to the server, making it look like you're using a different client.");
     private static ListSetting mode = new ListSetting("Mode", new String[] {
             "Eagler",
             "Vanilla",
@@ -32,7 +33,7 @@ public class ClientSpoofer extends Module{
 
     public ClientSpoofer() {
         super("ClientSpoofer", Category.MISC);
-        addSettings(mode);
+        addSettings(description, mode);
         Dragon.eventManager.registerListener(this, PacketSendEvent.class);
     }
 

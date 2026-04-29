@@ -4,14 +4,18 @@ import dragonclient.Dragon;
 import dragonclient.event.Events.PacketReceiveEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketConfirmTransaction;
 import net.minecraft.network.play.server.SPacketKeepAlive;
 
 public final class Debugger extends Module {
+
+    private DescriptionSetting description = new DescriptionSetting("Description", "Logs certain packets to the chat.");
     public Debugger() {
         super("Debugger", Category.MISC);
         Dragon.eventManager.registerListener(this, PacketReceiveEvent.class);
+        addSettings(description);
     }
 
     @Override

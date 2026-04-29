@@ -13,6 +13,7 @@ import dragonclient.util.java.awt.Color;
 import net.lax1dude.eaglercraft.opengl.GlStateManager;
 
 public class ChinaHat extends Module {
+
     private ListSetting quality = new ListSetting("Quality", new String[] {"Not china hat", "Umbrella"
 			, "Very Low", "Low", "Normal", "High", "Very High", "Smooth"} , "Normal");
 	private final BooleanSetting showInFirstPerson = new BooleanSetting("First Person", true);

@@ -11,11 +11,13 @@ import dragonclient.event.Events.PacketSendEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
 import dragonclient.module.settings.BooleanSetting;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.util.PacketUtil;
 
 import java.util.ArrayDeque;
 
 public final class Blink extends Module {
+    private DescriptionSetting description = new DescriptionSetting("Description", "Prevents the server from receiving your movement packets, allowing you to 'blink' around.");
     private final BooleanSetting allPackets = new BooleanSetting("All Packets", true);
     private final BooleanSetting showPlayer = new BooleanSetting("Show Player", false);
 
@@ -25,7 +27,7 @@ public final class Blink extends Module {
     public Blink() {
         super("Blink", Category.PLAYER);
         Dragon.eventManager.registerListener(this, PacketSendEvent.class);
-        addSettings(allPackets, showPlayer);
+        addSettings(allPackets, showPlayer, description);
     }
 
     @Override

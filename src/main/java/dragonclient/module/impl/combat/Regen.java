@@ -4,6 +4,7 @@ import dragonclient.Dragon;
 import dragonclient.event.Events.PreMotionEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.IntegerSetting;
 import dragonclient.module.settings.ListSetting;
 import dragonclient.util.PacketUtil;
@@ -11,6 +12,7 @@ import net.minecraft.network.play.client.CPacketPlayer;
 
 public class Regen extends Module {
 
+    private DescriptionSetting description = new DescriptionSetting("Description", "Regenerates your health faster.");
     
     private final ListSetting mode = new ListSetting("Mode", new String[]{
         "Normal",
@@ -21,7 +23,7 @@ public class Regen extends Module {
     private final IntegerSetting tick = new IntegerSetting("Tick", 1, 1, 20);
     public Regen() {
         super("Regen", Category.COMBAT);
-        addSettings(mode, health, speed, tick);
+        addSettings(description, mode, health, speed, tick);
         Dragon.eventManager.registerListener(this, PreMotionEvent.class);
     }
 

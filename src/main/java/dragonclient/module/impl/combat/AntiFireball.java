@@ -4,6 +4,7 @@ package dragonclient.module.impl.combat;
 import dragonclient.Dragon;
 import dragonclient.event.Events.UpdateEvent;
 import dragonclient.module.Category;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.FloatSetting;
 import dragonclient.module.settings.IntegerSetting;
 import dragonclient.util.TimeUtil;
@@ -12,6 +13,8 @@ import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.util.EnumHand;
 
 public class AntiFireball extends dragonclient.module.Module {
+
+   private DescriptionSetting description = new DescriptionSetting("Description", "Attacks fireballs around you.");
    public static EntityFireball target = null;
    public TimeUtil timeUtil = new TimeUtil();
 
@@ -20,7 +23,7 @@ public class AntiFireball extends dragonclient.module.Module {
 
    public AntiFireball() {
       super("AntiFireball", Category.COMBAT);
-      addSettings(range, cps);
+      addSettings(range, cps, description);
       Dragon.eventManager.registerListener(this, UpdateEvent.class);
    }
 

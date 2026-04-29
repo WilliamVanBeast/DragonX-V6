@@ -13,13 +13,15 @@ import dragonclient.event.Events.UpdateEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
 import dragonclient.module.settings.BooleanSetting;
+import dragonclient.module.settings.DescriptionSetting;
 
 public class InvMove extends Module {
+    private DescriptionSetting description = new DescriptionSetting("Description", "Allows you to move while in a GUI.");
     public BooleanSetting aacp = new BooleanSetting("InvMove_AACP", false);
 
     public InvMove() {
         super("InvMove", Category.MOVEMENT);
-        addSettings(aacp);
+        addSettings(aacp,description);
         Dragon.eventManager.registerListener(this, UpdateEvent.class);
     }
 

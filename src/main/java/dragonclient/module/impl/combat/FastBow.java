@@ -4,6 +4,7 @@ import dragonclient.Dragon;
 import dragonclient.event.Events.UpdateEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.FloatSetting;
 import net.minecraft.item.ItemBow;
 import net.minecraft.network.play.client.CPacketPlayerDigging;
@@ -12,10 +13,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 
 public class FastBow extends Module {
+
+    private DescriptionSetting  description = new DescriptionSetting("Description", "Allows you to shoot your bow faster.");
     private final FloatSetting delay = new FloatSetting("Delay", 3.0f, 1.0f, 10.0f);
     public FastBow() {
         super("FastBow", Category.COMBAT);
-        addSettings(delay);
+        addSettings(description, delay);
         Dragon.eventManager.registerListener(this, UpdateEvent.class);
     }
 

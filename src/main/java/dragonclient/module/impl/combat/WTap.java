@@ -6,16 +6,18 @@ import dragonclient.event.Events.PreMotionEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
 import dragonclient.module.settings.BooleanSetting;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.util.PacketUtil;
 import net.minecraft.network.play.client.CPacketEntityAction;
 
 public class WTap extends Module {
 
+    private DescriptionSetting description = new DescriptionSetting("Description", "Automatically stops and starts sprinting when you hit an entity to reset your sprint.");
     private final BooleanSetting legit = new BooleanSetting("Legit", true);
 
     public WTap() {
         super("WTap", Category.COMBAT);
-        addSettings(legit);
+        addSettings(description, legit);
         Dragon.eventManager.registerListener(this, AttackEvent.class);
         Dragon.eventManager.registerListener(this, PreMotionEvent.class);
     }

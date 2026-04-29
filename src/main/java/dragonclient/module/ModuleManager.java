@@ -25,6 +25,7 @@ import dragonclient.module.impl.hud.Keystrokes;
 import dragonclient.module.impl.hud.Radar;
 import dragonclient.module.impl.misc.Anticheat;
 import dragonclient.module.impl.misc.ClientSpoofer;
+import dragonclient.module.impl.misc.Crasher;
 import dragonclient.module.impl.misc.Debugger;
 import dragonclient.module.impl.misc.KillMessage;
 import dragonclient.module.impl.misc.XCarry;
@@ -113,6 +114,7 @@ public class ModuleManager {
         registerModule(new FastPlace());
         registerModule(new ChestStealer());
         registerModule(new AutoArmor());
+        registerModule(new Crasher());
     }
 
     /**

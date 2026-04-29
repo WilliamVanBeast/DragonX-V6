@@ -4,6 +4,7 @@ import dragonclient.Dragon;
 import dragonclient.event.Events.UpdateEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.FloatSetting;
 import dragonclient.module.settings.ListSetting;
 import net.minecraft.block.material.Material;
@@ -12,6 +13,8 @@ import net.minecraft.entity.EntityLivingBase;
 
 
 public class Criticals extends Module {
+
+    private DescriptionSetting description = new DescriptionSetting("Description", "Automatically performs critical hits for you.");
 
     private ListSetting mode = new ListSetting("Mode", new String[]{
         "minijump",
@@ -24,7 +27,7 @@ public class Criticals extends Module {
     
     public Criticals() {
         super("Criticals", Category.COMBAT);
-        addSettings(mode, heighty);
+        addSettings(description, mode, heighty);
         Dragon.eventManager.registerListener(this, UpdateEvent.class);
     }
 

@@ -10,14 +10,18 @@ import dragonclient.event.Events.PacketReceiveEvent;
 import dragonclient.event.Events.UpdateEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class Anticheat extends Module {
+
+    private DescriptionSetting description = new DescriptionSetting("Description", "Detects other hackers");
 
     public Anticheat() {
         super("Anticheat", Category.MISC);
         Dragon.eventManager.registerListener(this, UpdateEvent.class);
         Dragon.eventManager.registerListener(this, PacketReceiveEvent.class);
+        addSettings(description);
     }
     
 
@@ -45,10 +49,6 @@ public class Anticheat extends Module {
              AntiCheat.INSTANCE.getPlayers().put(player.getUniqueID(), new PlayerData(player));
     }
 }
-
-        /*         mc.world.playerEntities.stream().filter(e -> e != mc.thePlayer)
-            .forEach(e -> AntiCheat.INSTANCE.getPlayers().put(e.getUniqueID(), new PlayerData((EntityOtherPlayerMP) e)));
-     */
     }
 
     public void onDisable() {

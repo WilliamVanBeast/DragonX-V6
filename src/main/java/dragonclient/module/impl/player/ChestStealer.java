@@ -32,7 +32,7 @@ public class ChestStealer extends Module {
 
     public ChestStealer() {
         super("ChestStealer", Category.PLAYER);
-        addSettings(delay, titleCheck, freeLook, reverse);
+        addSettings(delay, titleCheck, freeLook, reverse, description);
         Dragon.eventManager.registerListener(this, PreMotionEvent.class);
 
     }
