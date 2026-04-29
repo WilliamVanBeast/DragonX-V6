@@ -15,6 +15,7 @@ import dragonclient.util.RenderUtil;
 import net.lax1dude.eaglercraft.Mouse;
 import net.lax1dude.eaglercraft.opengl.GlStateManager;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 
 public class ClickGui extends GuiScreen {
@@ -96,6 +97,9 @@ public class ClickGui extends GuiScreen {
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
+        
+        // Render descriptions on top
+        renderDescriptions(mouseX, mouseY);
     }
 
     @Override
@@ -197,6 +201,25 @@ public class ClickGui extends GuiScreen {
         double c1 = 1.70158;
         double c3 = c1 + 1;
         return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    }
+
+    private void renderDescriptions(int mouseX, int mouseY) {
+        FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
+        
+        for (Panel panel : panels) {
+            for (Element element : panel.getElements()) {
+                if (element instanceof ModuleElement) {
+                    ModuleElement moduleElement = (ModuleElement) element;
+                    if (moduleElement.isHoveringModule(mouseX, mouseY)) {
+                        dragonclient.module.settings.DescriptionSetting descSetting = moduleElement.getDescriptionSetting();
+                        if (descSetting != null && !descSetting.get().isEmpty()) {
+                            moduleElement.renderDescriptionTooltip(descSetting.get(), mouseX, mouseY, font);
+                            return; // Only render one description at a time
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override

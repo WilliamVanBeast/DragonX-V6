@@ -7,6 +7,7 @@ import dragonclient.event.Events.Render3DEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
 import dragonclient.module.settings.BooleanSetting;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.FloatSetting;
 import dragonclient.module.settings.ListSetting;
 import dragonclient.util.java.awt.Color;
@@ -18,12 +19,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 
 public class ESP extends Module{
-    private ListSetting mode = new ListSetting("Mode", new String[]{"Normal", "2D"}, "Normal");
+    private ListSetting mode = new ListSetting("Mode", new String[]{"Normal", "2D", "Skeleton"}, "Normal");
     private BooleanSetting healthBar = new BooleanSetting("Health Bar", true, () -> mode.get().equalsIgnoreCase("2D"));
+    private DescriptionSetting description = new DescriptionSetting("Description", "Draws boxes around players through walls");
     public ESP() {
         super("ESP", Category.RENDER);
         Dragon.eventManager.registerListener(this, Render3DEvent.class);
-        addSettings(mode, healthBar);
+        addSettings(mode, healthBar, description);
     }
 
     public void onRender3DEvent(Render3DEvent e) {

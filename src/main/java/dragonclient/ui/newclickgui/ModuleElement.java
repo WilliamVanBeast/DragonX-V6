@@ -6,11 +6,13 @@ import dragonclient.module.Module;
 import dragonclient.module.Setting;
 import dragonclient.module.settings.BooleanSetting;
 import dragonclient.module.settings.ColorSetting;
+import dragonclient.module.settings.DescriptionSetting;
 import dragonclient.module.settings.DoubleSetting;
 import dragonclient.module.settings.FloatSetting;
 import dragonclient.module.settings.IntegerSetting;
 import dragonclient.module.settings.KeySetting;
 import dragonclient.module.settings.ListSetting;
+import dragonclient.module.settings.StringSetting;
 import dragonclient.util.Colors;
 import dragonclient.util.RenderUtil;
 import net.lax1dude.eaglercraft.Keyboard;
@@ -35,6 +37,9 @@ public class ModuleElement extends ButtonElement {
     private float settingsWidth;
 
     public int i = 0;
+    
+    private StringSetting editingStringSetting = null;
+    private String stringInputBuffer = "";
 
     public ModuleElement(Module module) {
         super(null);
@@ -81,6 +86,8 @@ public class ModuleElement extends ButtonElement {
 
                     int color = i % 2 == 0 ? Colors.disabledColor : Colors.disabledColor2;
                     if (!value.getCanDisplay().get())
+                        continue;
+                    if (value instanceof DescriptionSetting)
                         continue;
                     if (value instanceof BooleanSetting) {
                         String text = value.getName();
@@ -314,6 +321,34 @@ public class ModuleElement extends ButtonElement {
                         }
 
                         ypos += 12;
+                    } else if (value instanceof StringSetting) {
+                        StringSetting stringSetting = (StringSetting) value;
+                        String displayText;
+                        
+                        if (editingStringSetting == stringSetting) {
+                            displayText = value.getName() + "§f: §e" + stringInputBuffer + "§f_";
+                        } else {
+                            displayText = value.getName() + "§f: §c" + stringSetting.get();
+                        }
+                        
+                        float textWidth = font.getStringWidth(displayText);
+                        if (getSettingsWidth() < textWidth + 8) {
+                            setSettingsWidth(textWidth + 8);
+                        }
+
+                        RenderUtil.drawRect(getX() + 1, ypos + 2, getX() + getSettingsWidth(), ypos + 14,
+                                color);
+                        
+                        if (isHovering(mouseX, mouseY, getX(), ypos + 2, (int) getSettingsWidth(), 11)) {
+                            if (Mouse.isButtonDown(0) && isntPressed() && editingStringSetting == null) {
+                                editingStringSetting = stringSetting;
+                                stringInputBuffer = stringSetting.get();
+                            }
+                        }
+
+                        GlStateManager.resetColor();
+                        font.drawString(displayText, getX() + 2, ypos + 4, Colors.textColor);
+                        ypos += 12;
                     } else if (value instanceof ColorSetting) {
                         ColorSetting colorSetting = (ColorSetting) value;
                         String text = value.getName() + "§f: §c" + colorSetting.getHex().substring(0, 6);
@@ -361,6 +396,36 @@ public class ModuleElement extends ButtonElement {
             } else {
                 expandedHeight = 0;
                 font.drawString("+", getX() + getWidth() - 9, getY() + getHeight() / 10, Colors.specialTextColor);
+            }
+        }
+        
+        // Handle string input
+        if (editingStringSetting != null && Keyboard.isCreated()) {
+            while (Keyboard.next()) {
+                if (Keyboard.getEventKeyState()) {
+                    int key = Keyboard.getEventKey();
+                    
+                    if (key == KeyboardConstants.KEY_RETURN || key == KeyboardConstants.KEY_NUMPADENTER) {
+                        // Save and stop editing
+                        editingStringSetting.set(stringInputBuffer);
+                        editingStringSetting = null;
+                        stringInputBuffer = "";
+                    } else if (key == KeyboardConstants.KEY_ESCAPE) {
+                        // Cancel editing
+                        editingStringSetting = null;
+                        stringInputBuffer = "";
+                    } else if (key == KeyboardConstants.KEY_BACK) {
+                        // Backspace
+                        if (stringInputBuffer.length() > 0) {
+                            stringInputBuffer = stringInputBuffer.substring(0, stringInputBuffer.length() - 1);
+                        }
+                    } else if (Keyboard.getEventCharacter() >= 32 && Keyboard.getEventCharacter() <= 126) {
+                        // Regular character input
+                        if (stringInputBuffer.length() < editingStringSetting.getMaxLength()) {
+                            stringInputBuffer += Keyboard.getEventCharacter();
+                        }
+                    }
+                }
             }
         }
 
@@ -625,5 +690,73 @@ public class ModuleElement extends ButtonElement {
 
     private boolean isHovering(int mouseX, int mouseY, int x, int y, int width, int height) {
         return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+    }
+
+    void renderDescriptionTooltip(String description, int mouseX, int mouseY, FontRenderer font) {
+        int tooltipX = mouseX + 10;
+        int tooltipY = mouseY + 10;
+        int maxWidth = 150;
+        
+        // Split description into lines
+        java.util.List<String> lines = new java.util.ArrayList<>();
+        String[] words = description.split(" ");
+        StringBuilder currentLine = new StringBuilder();
+        
+        for (String word : words) {
+            if (font.getStringWidth(currentLine.toString() + word) > maxWidth) {
+                if (currentLine.length() > 0) {
+                    lines.add(currentLine.toString());
+                    currentLine = new StringBuilder();
+                }
+            }
+            if (currentLine.length() > 0) {
+                currentLine.append(" ");
+            }
+            currentLine.append(word);
+        }
+        if (currentLine.length() > 0) {
+            lines.add(currentLine.toString());
+        }
+        
+        // Calculate tooltip dimensions
+        int tooltipWidth = 0;
+        for (String line : lines) {
+            tooltipWidth = Math.max(tooltipWidth, font.getStringWidth(line));
+        }
+        tooltipWidth += 8;
+        int tooltipHeight = (lines.size() * 10) + 4;
+        
+        // Prevent tooltip from going off screen
+        if (tooltipX + tooltipWidth > Minecraft.getMinecraft().displayWidth) {
+            tooltipX = Minecraft.getMinecraft().displayWidth - tooltipWidth;
+        }
+        if (tooltipY + tooltipHeight > Minecraft.getMinecraft().displayHeight) {
+            tooltipY = Minecraft.getMinecraft().displayHeight - tooltipHeight;
+        }
+        
+        // Draw tooltip background
+        RenderUtil.drawRect(tooltipX, tooltipY, tooltipX + tooltipWidth, tooltipY + tooltipHeight, 0xFF1A1A1A);
+        RenderUtil.drawRect(tooltipX - 1, tooltipY - 1, tooltipX + tooltipWidth + 1, tooltipY + tooltipHeight + 1, 0xFF404040);
+        
+        // Draw tooltip text
+        int currentY = tooltipY + 2;
+        for (String line : lines) {
+            font.drawString(line, tooltipX + 4, currentY, Colors.textColor);
+            currentY += 10;
+        }
+    }
+    
+    public DescriptionSetting getDescriptionSetting() {
+        List<Setting<?>> settings = module.getSettings();
+        for (Setting<?> setting : settings) {
+            if (setting instanceof DescriptionSetting) {
+                return (DescriptionSetting) setting;
+            }
+        }
+        return null;
+    }
+    
+    public boolean isHoveringModule(int mouseX, int mouseY) {
+        return isHovering(mouseX, mouseY, getX(), getY(), getWidth(), getHeight());
     }
 }
