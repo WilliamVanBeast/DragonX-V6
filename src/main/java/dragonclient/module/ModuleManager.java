@@ -31,8 +31,13 @@ import dragonclient.module.impl.misc.XCarry;
 import dragonclient.module.impl.movement.InvMove;
 import dragonclient.module.impl.movement.No003;
 import dragonclient.module.impl.movement.Sprint;
+import dragonclient.module.impl.player.AutoArmor;
 import dragonclient.module.impl.player.Blink;
+import dragonclient.module.impl.player.ChestStealer;
+import dragonclient.module.impl.player.FastPlace;
 import dragonclient.module.impl.player.NoFall;
+import dragonclient.module.impl.player.TpaKiller;
+import dragonclient.module.impl.render.AntiInvis;
 import dragonclient.module.impl.render.ChinaHat;
 import dragonclient.module.impl.render.ESP;
 import dragonclient.module.impl.render.Fullbright;
@@ -103,6 +108,11 @@ public class ModuleManager {
         registerModule(new KnockbackDisplacer());
         //registerModule(new Penis());
         registerModule(new SkeletonEsp());
+        registerModule(new AntiInvis());
+        registerModule(new TpaKiller());
+        registerModule(new FastPlace());
+        registerModule(new ChestStealer());
+        registerModule(new AutoArmor());
     }
 
     /**

@@ -178,7 +178,6 @@ public static void drawChromaString(final String string, final int x, final int 
         GlStateManager.popMatrix();
     }
     
-    
     	public static void drawPoint(double x, double y, int color, float size) {
 		GL11.glPushMatrix();
 
