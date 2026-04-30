@@ -27,6 +27,7 @@ import dragonclient.module.impl.misc.Anticheat;
 import dragonclient.module.impl.misc.ClientSpoofer;
 import dragonclient.module.impl.misc.Crasher;
 import dragonclient.module.impl.misc.Debugger;
+import dragonclient.module.impl.misc.IRC;
 import dragonclient.module.impl.misc.KillMessage;
 import dragonclient.module.impl.misc.XCarry;
 import dragonclient.module.impl.movement.InvMove;
@@ -115,6 +116,7 @@ public class ModuleManager {
         registerModule(new ChestStealer());
         registerModule(new AutoArmor());
         registerModule(new Crasher());
+        registerModule(new IRC());
     }
 
     /**

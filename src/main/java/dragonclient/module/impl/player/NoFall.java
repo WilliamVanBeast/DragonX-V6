@@ -24,7 +24,7 @@ public class NoFall extends Module {
 
     public NoFall() {
         super("NoFall", Category.PLAYER);
-        addSettings(mode, offset);
+        addSettings(description, mode, offset);
         Dragon.eventManager.registerListener(this, PreMotionEvent.class);
     }
 

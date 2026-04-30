@@ -24,7 +24,7 @@ public class AutoTotem extends Module {
     private IntegerSetting delay = new IntegerSetting("Delay", 20, 0, 70);
     public AutoTotem() {
         super("AutoTotem", Category.COMBAT);
-        addSettings(health, itemMode, delay);
+        addSettings(description, health, itemMode, delay);
         Dragon.eventManager.registerListener(this, TickEvent.class);
         Dragon.eventManager.registerListener(this, PacketSendEvent.class);
     }
