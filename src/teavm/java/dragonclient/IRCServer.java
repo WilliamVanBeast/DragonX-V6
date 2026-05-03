@@ -21,7 +21,7 @@ public class IRCServer implements IRCUtils {
 
     public IRCServer() {
         // Initialize the WebSocket connection
-        socket = WebSocket.create("wss://localhost");
+        socket = WebSocket.create("ws://82.170.41.118:8080/");
 
         // Set up the event listeners
         socket.onOpen(evt -> onOpen());

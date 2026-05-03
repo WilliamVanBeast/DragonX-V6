@@ -5,13 +5,15 @@ import dragonclient.IRCServer;
 import dragonclient.event.Events.ChatEvent;
 import dragonclient.module.Category;
 import dragonclient.module.Module;
+import dragonclient.module.settings.DescriptionSetting;
 
 public final class IRC extends Module{
-
+    private DescriptionSetting description = new DescriptionSetting("Description", "Connect to client chat, to use: Put @ in front of your message to talk to fellow dragonx users");
     public static IRCServer server;
     public IRC() {
         super("IRC", Category.MISC);
         Dragon.eventManager.registerListener(this, ChatEvent.class);
+        addSettings(description);
     }
 
     @Override

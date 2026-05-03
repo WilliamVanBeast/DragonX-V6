@@ -13,6 +13,7 @@ import dragonclient.module.impl.combat.Autoclicker;
 import dragonclient.module.impl.combat.ComboOneHit;
 import dragonclient.module.impl.combat.Criticals;
 import dragonclient.module.impl.combat.FastBow;
+import dragonclient.module.impl.combat.KillAura;
 import dragonclient.module.impl.combat.KnockbackDisplacer;
 import dragonclient.module.impl.combat.NoClickDelay;
 import dragonclient.module.impl.combat.Regen;
@@ -117,6 +118,7 @@ public class ModuleManager {
         registerModule(new AutoArmor());
         registerModule(new Crasher());
         registerModule(new IRC());
+        registerModule(new KillAura());
     }
 
     /**

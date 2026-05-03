@@ -13,11 +13,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 public final class RenderUtil {
     private static final float zLevel = 0F;
+    private static double ticks;
 
     public static void drawGradientRect(final int left, final int top, final int right, final int bottom,
             final int startColor, final int endColor) {
@@ -178,6 +180,8 @@ public static void drawChromaString(final String string, final int x, final int 
         GlStateManager.popMatrix();
     }
     
+   
+
     	public static void drawPoint(double x, double y, int color, float size) {
 		GL11.glPushMatrix();
 

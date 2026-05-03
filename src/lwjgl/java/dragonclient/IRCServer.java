@@ -38,7 +38,7 @@ public class IRCServer extends Endpoint implements IRCUtils{
 
         try {
             // TODO: i'll use different hosting soon xd
-            manager.connectToServer(this, builder.build(), new URI("wss://192.168.2.51"));
+            manager.connectToServer(this, builder.build(), new URI("ws://82.170.41.118:8080/"));
         } catch (DeploymentException | IOException | URISyntaxException e) {
             e.printStackTrace();
         }
