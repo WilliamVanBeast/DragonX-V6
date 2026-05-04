@@ -60,11 +60,11 @@ public class Menu extends GuiScreen{
 
 			//CHANGELOG
 			
-		mc.fontRendererObj.drawString("§lChangelog For Build: " + "Beta 2", 4, 5, -1);
+		mc.fontRendererObj.drawString("§lChangelog For Build: " + "Release", 4, 5, -1);
         mc.fontRendererObj.drawString("§a§l - Added new modules", 4, 16, -1);
-        mc.fontRendererObj.drawString("§a§l - Added Command System (use .help in chat)", 4, 24, -1);
-		mc.fontRendererObj.drawString("§a§l - Added Anticheat", 4, 32, -1);
-		mc.fontRendererObj.drawString("§a§l - Added new modules", 4, 40, -1);
+        mc.fontRendererObj.drawString("§a§l - Added IRC (Use @(Message) when enabled to chat with others.", 4, 24, -1);
+		mc.fontRendererObj.drawString("§a§l - Added Anticheat checks", 4, 32, -1);
+		mc.fontRendererObj.drawString("§a§l - JOIN THE DISCORD TO STAY UPDATED", 4, 40, -1);
 		}
 		
 		

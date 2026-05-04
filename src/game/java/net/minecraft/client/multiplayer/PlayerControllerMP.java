@@ -79,7 +79,7 @@ public class PlayerControllerMP {
 	private boolean isHittingBlock;
 
 	/** Current game type for the player */
-	private GameType currentGameType = GameType.SURVIVAL;
+	public GameType currentGameType = GameType.SURVIVAL;
 
 	/** Index of the current item held by the player in the inventory hotbar */
 	private int currentPlayerItem;
@@ -377,7 +377,7 @@ public class PlayerControllerMP {
 	/**
 	 * Syncs the current player item with the server
 	 */
-	private void syncCurrentPlayItem() {
+	public void syncCurrentPlayItem() {
 		int i = this.mc.player.inventory.currentItem;
 
 		if (i != this.currentPlayerItem) {

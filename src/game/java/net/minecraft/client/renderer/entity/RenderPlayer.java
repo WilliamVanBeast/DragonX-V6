@@ -1,5 +1,11 @@
 package net.minecraft.client.renderer.entity;
 
+import dragonclient.cosmetic.impl.CosmeticBlaze;
+import dragonclient.cosmetic.impl.CosmeticDogPet;
+import dragonclient.cosmetic.impl.CrystalWings;
+import dragonclient.cosmetic.impl.Glasses;
+import dragonclient.cosmetic.impl.Halo;
+import dragonclient.cosmetic.impl.TopHat;
 import net.lax1dude.eaglercraft.opengl.GlStateManager;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBase;
@@ -44,6 +50,12 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer> {
 		this.addLayer(new LayerDeadmau5Head(this));
 		this.addLayer(new LayerCape(this));
 		this.addLayer(new LayerCustomHead(this.getMainModel().bipedHead));
+		this.addLayer(new TopHat(this));
+		this.addLayer(new CosmeticBlaze(this));
+		this.addLayer(new CrystalWings(this));
+		this.addLayer(new Halo(this));
+		this.addLayer(new Glasses(this));
+		this.addLayer(new CosmeticDogPet(this));
 		this.addLayer(new LayerElytra(this));
 		this.addLayer(new LayerEntityOnShoulder(renderManager));
 	}

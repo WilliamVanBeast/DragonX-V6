@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import dragonclient.anticheat.check.impl.combat.AutoClickerA;
+import dragonclient.anticheat.check.impl.movement.FlightA;
+import dragonclient.anticheat.check.impl.movement.FlightB;
 import dragonclient.anticheat.check.impl.movement.InvMoveA;
 import dragonclient.anticheat.check.impl.movement.MoveCheck;
 import dragonclient.anticheat.check.impl.movement.SpeedA;
@@ -31,6 +33,8 @@ public class CheckStorage {
             GroundSpoofB.class,
             MoveCheck.class,
             InvMoveA.class,
+            FlightA.class,
+            FlightB.class,
             AutoClickerA.class
     };
 

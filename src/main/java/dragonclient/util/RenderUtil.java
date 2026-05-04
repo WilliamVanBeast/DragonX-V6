@@ -2,6 +2,9 @@ package dragonclient.util;
 
 import static net.lax1dude.eaglercraft.opengl.RealOpenGLEnums.*;
 
+import java.util.ConcurrentModificationException;
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 
 import dragonclient.util.java.awt.Color;
@@ -16,6 +19,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public final class RenderUtil {
     private static final float zLevel = 0F;
@@ -157,8 +161,8 @@ public static void drawChromaString(final String string, final int x, final int 
             final long l = System.currentTimeMillis() - (xTmp * 10 - y * 10);
             final int i = Color.HSBtoRGB(l % 2000L / 2000.0f, 0.8f, 0.8f);
             final String tmp = String.valueOf(textChar);
-            mc.fontRendererObj.drawString(tmp, (float) xTmp, (float) y, i, shadow);
-            xTmp += mc.fontRendererObj.getCharWidth(textChar);
+            Minecraft.getMinecraft().fontRendererObj.drawString(tmp, (float) xTmp, (float) y, i, shadow);
+            xTmp += Minecraft.getMinecraft().fontRendererObj.getCharWidth(textChar);
         }
     }
 
@@ -181,6 +185,173 @@ public static void drawChromaString(final String string, final int x, final int 
     }
     
    
+        public void renderBreadCrumb(final Vec3d vec3) {
+
+        GlStateManager.disableDepth();
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+        try {
+
+            final double x = vec3.xCoord - (Minecraft.getMinecraft().getRenderManager()).renderPosX;
+            final double y = vec3.yCoord - (Minecraft.getMinecraft().getRenderManager()).renderPosY;
+            final double z = vec3.zCoord - (Minecraft.getMinecraft().getRenderManager()).renderPosZ;
+
+            final double distanceFromPlayer = Minecraft.getMinecraft().player.getDistance(vec3.xCoord, vec3.yCoord - 1, vec3.zCoord);
+            int quality = (int) (distanceFromPlayer * 4 + 10);
+
+            if (quality > 350)
+                quality = 350;
+
+            GL11.glPushMatrix();
+            GL11.glTranslated(x, y, z);
+
+            final float scale = 0.04f;
+            GL11.glScalef(-scale, -scale, -scale);
+
+            GL11.glRotated(-(Minecraft.getMinecraft().getRenderManager()).playerViewY, 0.0D, 1.0D, 0.0D);
+            GL11.glRotated((Minecraft.getMinecraft().getRenderManager()).playerViewX, 1.0D, 0.0D, 0.0D);
+
+            final Color c = Color.WHITE;
+
+            RenderUtil.drawFilledCircleNoGL(0, 0, 0.7, c.hashCode(), quality);
+
+            if (distanceFromPlayer < 4)
+                RenderUtil.drawFilledCircleNoGL(0, 0, 1.4, new Color(c.getRed(), c.getGreen(), c.getBlue(), 50).hashCode(), quality);
+
+            if (distanceFromPlayer < 20)
+                RenderUtil.drawFilledCircleNoGL(0, 0, 2.3, new Color(c.getRed(), c.getGreen(), c.getBlue(), 30).hashCode(), quality);
+
+
+            GL11.glScalef(0.8f, 0.8f, 0.8f);
+
+            GL11.glPopMatrix();
+
+
+        } catch (final ConcurrentModificationException ignored) {
+        }
+
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+        GlStateManager.enableDepth();
+
+        GL11.glColor3f(255, 255, 255);
+    }
+
+    
+    public static void drawFilledCircleNoGL(final int x, final int y, final double r, final int c) {
+        final float f = ((c >> 24) & 0xff) / 255F;
+        final float f1 = ((c >> 16) & 0xff) / 255F;
+        final float f2 = ((c >> 8) & 0xff) / 255F;
+        final float f3 = (c & 0xff) / 255F;
+
+        GL11.glColor4f(f1, f2, f3, f);
+        GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+
+        for (int i = 0; i <= 360 / 20; i++) {
+            final double x2 = Math.sin(((i * 20 * Math.PI) / 180)) * r;
+            final double y2 = Math.cos(((i * 20 * Math.PI) / 180)) * r;
+            GL11.glVertex2d(x + x2, y + y2);
+        }
+
+        GL11.glEnd();
+
+    }
+
+    public static void drawFilledCircleNoGL(final int x, final int y, final double r, final int c, final int quality) {
+        final float f = ((c >> 24) & 0xff) / 255F;
+        final float f1 = ((c >> 16) & 0xff) / 255F;
+        final float f2 = ((c >> 8) & 0xff) / 255F;
+        final float f3 = (c & 0xff) / 255F;
+
+        GL11.glColor4f(f1, f2, f3, f);
+        GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+
+        for (int i = 0; i <= 360 / quality; i++) {
+            final double x2 = Math.sin(((i * quality * Math.PI) / 180)) * r;
+            final double y2 = Math.cos(((i * quality * Math.PI) / 180)) * r;
+            GL11.glVertex2d(x + x2, y + y2);
+        }
+
+        GL11.glEnd();
+    }
+
+    public static void renderBreadCrumbs(final List<Vec3d> vec3s) {
+
+        GlStateManager.disableDepth();
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+        int i = 0;
+        try {
+            for (final Vec3d v : vec3s) {
+
+                i++;
+
+                boolean draw = true;
+
+                final double x = v.xCoord - (Minecraft.getMinecraft().getRenderManager()).renderPosX;
+                final double y = v.yCoord - (Minecraft.getMinecraft().getRenderManager()).renderPosY;
+                final double z = v.zCoord - (Minecraft.getMinecraft().getRenderManager()).renderPosZ;
+
+                final double distanceFromPlayer = Minecraft.getMinecraft().player.getDistance(v.xCoord, v.yCoord - 1, v.zCoord);
+                int quality = (int) (distanceFromPlayer * 4 + 10);
+
+                if (quality > 350)
+                    quality = 350;
+
+                if (i % 10 != 0 && distanceFromPlayer > 25) {
+                    draw = false;
+                }
+
+                if (i % 3 == 0 && distanceFromPlayer > 15) {
+                    draw = false;
+                }
+
+                if (draw) {
+
+                    GL11.glPushMatrix();
+                    GL11.glTranslated(x, y, z);
+
+                    final float scale = 0.04f;
+                    GL11.glScalef(-scale, -scale, -scale);
+
+                    GL11.glRotated(-(Minecraft.getMinecraft().getRenderManager()).playerViewY, 0.0D, 1.0D, 0.0D);
+                    GL11.glRotated((Minecraft.getMinecraft().getRenderManager()).playerViewX, 1.0D, 0.0D, 0.0D);
+
+                    final Color c = Color.WHITE;
+
+
+                    RenderUtil.drawFilledCircleNoGL(0, 0, 0.7, c.hashCode(), quality);
+
+                    if (distanceFromPlayer < 4)
+                        RenderUtil.drawFilledCircleNoGL(0, 0, 1.4, new Color(c.getRed(), c.getGreen(), c.getBlue(), 50).hashCode(), quality);
+
+                    if (distanceFromPlayer < 20)
+                        RenderUtil.drawFilledCircleNoGL(0, 0, 2.3, new Color(c.getRed(), c.getGreen(), c.getBlue(), 30).hashCode(), quality);
+
+                    GL11.glScalef(0.8f, 0.8f, 0.8f);
+
+                    GL11.glPopMatrix();
+
+                }
+
+            }
+        } catch (final ConcurrentModificationException ignored) {
+        }
+
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+        GlStateManager.enableDepth();
+
+        GL11.glColor3f(255, 255, 255);
+    }
 
     	public static void drawPoint(double x, double y, int color, float size) {
 		GL11.glPushMatrix();

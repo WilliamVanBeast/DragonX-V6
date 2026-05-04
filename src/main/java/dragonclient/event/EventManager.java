@@ -62,10 +62,13 @@ public final class EventManager {
                     entry.getKey().onActionEvent((ActionEvent) event);
                 } else if (event instanceof MoveEvent) {
                     entry.getKey().onMoveEvent((MoveEvent) event);
+                }else if (event instanceof RenderHungerEvent) {
+                    entry.getKey().onRenderHungerEvent((RenderHungerEvent) event);
                 }else if (event instanceof RenderNametagEvent) {
                     entry.getKey().onRenderNametagEvent((RenderNametagEvent) event);
                 }
             }
         }
-    }
+        }
 }
+

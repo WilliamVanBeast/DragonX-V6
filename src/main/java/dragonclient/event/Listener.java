@@ -43,6 +43,11 @@ public interface Listener {
         throw new UnsupportedOperationException("unimplemented onPacketSendEvent was called");
     }
 
+    
+    default void onRenderHungerEvent(RenderHungerEvent event) {
+        throw new UnsupportedOperationException("unimplemented onRenderHungerEvent was called");
+    }
+
     default void onPacketReceiveEvent(PacketReceiveEvent event) {
         throw new UnsupportedOperationException("unimplemented onPacketReceiveEvent was called");
     }

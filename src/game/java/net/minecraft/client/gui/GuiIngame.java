@@ -8,6 +8,7 @@ import com.google.common.collect.Ordering;
 
 import dragonclient.Dragon;
 import dragonclient.event.Events.Render2DEvent;
+import dragonclient.event.Events.RenderHungerEvent;
 import dragonclient.module.RenderModule;
 
 import java.util.Collection;
@@ -74,7 +75,7 @@ public class GuiIngame extends Gui {
 
 	/** ChatGUI instance that retains all previous chat data */
 	private final GuiNewChat persistantChatGUI;
-	private int updateCounter;
+	public int updateCounter;
 
 	/** The string specifying which record music is playing */
 	private String recordPlaying = "";
@@ -848,7 +849,10 @@ public class GuiIngame extends Gui {
 					if (l5 * 2 + 1 == k) {
 						this.drawTexturedModalRect(l7, j6, l6 + 45, 27, 9, 9);
 					}
+									RenderHungerEvent event = new RenderHungerEvent();
+				Dragon.eventManager.callEvent(event);
 				}
+
 			}
 
 			if (entityplayer.isInsideOfMaterial(Material.WATER)) {

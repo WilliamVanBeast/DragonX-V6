@@ -37,6 +37,10 @@ public class ItemFood extends Item {
 	 */
 	private PotionEffect potionId;
 
+	public PotionEffect getPotionId() {
+		return potionId;
+	}
+
 	/** probably of the set potion effect occurring */
 	private float potionEffectProbability;
 

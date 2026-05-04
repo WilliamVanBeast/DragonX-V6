@@ -8,12 +8,13 @@ import java.util.stream.Collectors;
 import dragonclient.Dragon;
 import dragonclient.module.impl.combat.AntiFireball;
 import dragonclient.module.impl.combat.AttackCrash;
+import dragonclient.module.impl.combat.Aura;
 import dragonclient.module.impl.combat.AutoTotem;
 import dragonclient.module.impl.combat.Autoclicker;
+import dragonclient.module.impl.combat.BackTrack;
 import dragonclient.module.impl.combat.ComboOneHit;
 import dragonclient.module.impl.combat.Criticals;
 import dragonclient.module.impl.combat.FastBow;
-import dragonclient.module.impl.combat.KillAura;
 import dragonclient.module.impl.combat.KnockbackDisplacer;
 import dragonclient.module.impl.combat.NoClickDelay;
 import dragonclient.module.impl.combat.Regen;
@@ -38,15 +39,17 @@ import dragonclient.module.impl.player.AutoArmor;
 import dragonclient.module.impl.player.Blink;
 import dragonclient.module.impl.player.ChestStealer;
 import dragonclient.module.impl.player.FastPlace;
-import dragonclient.module.impl.player.NoFall;
+import dragonclient.module.impl.player.Timer;
 import dragonclient.module.impl.player.TpaKiller;
 import dragonclient.module.impl.render.AntiInvis;
 import dragonclient.module.impl.render.ChinaHat;
+import dragonclient.module.impl.render.Cosmetics;
 import dragonclient.module.impl.render.ESP;
 import dragonclient.module.impl.render.Fullbright;
 import dragonclient.module.impl.render.HUD;
 import dragonclient.module.impl.render.NameTags;
 import dragonclient.module.impl.render.Penis;
+import dragonclient.module.impl.render.Saturation;
 import dragonclient.module.impl.render.SkeletonEsp;
 import dragonclient.module.impl.render.Tracers;
 import dragonclient.module.impl.render.Trails;
@@ -105,7 +108,7 @@ public class ModuleManager {
         registerModule(new ChinaHat());
         registerModule(new AutoTotem());
         registerModule(new Velocity());
-        registerModule(new NoFall());
+        registerModule(new Aura());
         registerModule(new FastBow());
         registerModule(new NameTags());
         registerModule(new KnockbackDisplacer());
@@ -118,7 +121,10 @@ public class ModuleManager {
         registerModule(new AutoArmor());
         registerModule(new Crasher());
         registerModule(new IRC());
-        registerModule(new KillAura());
+        registerModule(new Timer());
+        registerModule(new BackTrack());
+        registerModule(new Saturation());
+        registerModule(new Cosmetics());
     }
 
     /**

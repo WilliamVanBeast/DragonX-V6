@@ -11,4 +11,9 @@ public class Render2DEvent extends Event {
         this.partialTicks = partialTicks;
         this.resolution = resolution;
     }
+
+    public ScaledResolution getScaledResolution() {
+        return resolution;
+    }
+
 }
