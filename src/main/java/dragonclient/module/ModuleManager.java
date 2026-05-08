@@ -34,6 +34,7 @@ import dragonclient.module.impl.misc.KillMessage;
 import dragonclient.module.impl.misc.XCarry;
 import dragonclient.module.impl.movement.InvMove;
 import dragonclient.module.impl.movement.No003;
+import dragonclient.module.impl.movement.SlyPort;
 import dragonclient.module.impl.movement.Sprint;
 import dragonclient.module.impl.player.AutoArmor;
 import dragonclient.module.impl.player.Blink;
@@ -125,6 +126,7 @@ public class ModuleManager {
         registerModule(new BackTrack());
         registerModule(new Saturation());
         registerModule(new Cosmetics());
+        registerModule(new SlyPort());
     }
 
     /**

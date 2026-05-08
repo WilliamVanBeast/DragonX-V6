@@ -466,10 +466,6 @@ public class ModuleElement extends ButtonElement {
         }
         
         // Draw border around gradient
-        RenderUtil.drawRect(gradientX - 1, gradientY - 1, gradientX + gradientSize + 1, gradientY, Colors.borderColor); // top
-        RenderUtil.drawRect(gradientX - 1, gradientY + gradientSize, gradientX + gradientSize + 1, gradientY + gradientSize + 1, Colors.borderColor); // bottom
-        RenderUtil.drawRect(gradientX - 1, gradientY, gradientX, gradientY + gradientSize, Colors.borderColor); // left
-        RenderUtil.drawRect(gradientX + gradientSize, gradientY, gradientX + gradientSize + 1, gradientY + gradientSize, Colors.borderColor); // right
         
         // Draw crosshair for current selection
         int crossX = (int) (gradientX + gradientSize * currentSaturation);
@@ -502,10 +498,6 @@ public class ModuleElement extends ButtonElement {
         }
         
         // Draw border around hue bar
-        RenderUtil.drawRect(hueX - 1, hueY - 1, hueX + gradientSize + 1, hueY, Colors.borderColor); // top
-        RenderUtil.drawRect(hueX - 1, hueY + hueHeight, hueX + gradientSize + 1, hueY + hueHeight + 1, Colors.borderColor); // bottom
-        RenderUtil.drawRect(hueX - 1, hueY, hueX, hueY + hueHeight, Colors.borderColor); // left
-        RenderUtil.drawRect(hueX + gradientSize, hueY, hueX + gradientSize + 1, hueY + hueHeight, Colors.borderColor); // right
         
         // Draw hue indicator
         int hueIndicatorX = (int) (hueX + (currentHue / 360) * gradientSize);
@@ -534,10 +526,6 @@ public class ModuleElement extends ButtonElement {
         }
         
         // Draw border around alpha bar
-        RenderUtil.drawRect(alphaX - 1, alphaY - 1, alphaX + gradientSize + 1, alphaY, Colors.borderColor); // top
-        RenderUtil.drawRect(alphaX - 1, alphaY + alphaHeight, alphaX + gradientSize + 1, alphaY + alphaHeight + 1, Colors.borderColor); // bottom
-        RenderUtil.drawRect(alphaX - 1, alphaY, alphaX, alphaY + alphaHeight, Colors.borderColor); // left
-        RenderUtil.drawRect(alphaX + gradientSize, alphaY, alphaX + gradientSize + 1, alphaY + alphaHeight, Colors.borderColor); // right
         
         // Draw alpha indicator
         int alphaIndicatorX = (int) (alphaX + (alpha / 255.0f) * gradientSize);
